@@ -2,23 +2,27 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import './Product.css';
+import {Link} from 'react-router-dom';
 
 const Product = (props) => {
-    console.log(props.product);
-    const {name, img,seller, price, stock}=props.product;
+    const product =props.product;
+    const {name,seller, price, img,stock, key}=product;
+    product.quantity =1;
+
     return (
         <div className="product">
             <div>
                 <img src={img} alt=""/>
             </div>
             <div>
-                 <h4>{name}</h4>
+                 <h4><Link to={"/product/"+key}>{name} </Link></h4>
                  <br/>
                  <p><small>by:{seller}</small></p>
                  <p>${price}</p>
+               
                 <p><small>Only{stock}left in stock -Order soon</small></p>
-                <button onClick={()=>props.handelAddProduct(props)}><FontAwesomeIcon icon={faShoppingCart} />
-                    add to cart</button>
+                { props.addButton  &&   <button onClick={()=>props.handelAddProduct(props.product)}><FontAwesomeIcon icon={faShoppingCart} />
+                    add to cart</button>}
 
             </div>
         </div>

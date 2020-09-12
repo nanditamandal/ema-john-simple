@@ -4,6 +4,7 @@ import Product from '../Product/Product'
 import './Shop.css';
 import Cart from '../Cart/Cart';
 import {addToDatabaseCart, getDatabaseCart} from '../../utilities/databaseManager';
+import {Link} from 'react-router-dom';
 
 const Shop = () => {
     const first10 =fakeData.slice(0,10);
@@ -25,15 +26,20 @@ const Shop = () => {
     
 
     const handelAddProduct =(product)=>{
+        
         console.log(product);
         const key =product.key;
         console.log("key", key);
         const sameProduct = cart.find(pd => pd.key ===key );
         let count =1;
         let newCart;
+       // const saveCart =getDatabaseCart();
+      //  const productKeys=Object.keys(saveCart);
+       // console.log("product keys", saveCart[key]);
         if(sameProduct){
             
-           count = sameProduct.quantity+1;
+    
+           count =sameProduct.quantity+1;
            console.log("count",count);
            sameProduct.quantity =count;
             const others =cart.filter(pd=>pd.key !== key);
@@ -63,7 +69,12 @@ const Shop = () => {
 
             </div>
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                <Link to='/review'>
+                <button className="btn btn-primary">Review</button>
+            </Link>
+            
+                </Cart>
                
             </div>
             

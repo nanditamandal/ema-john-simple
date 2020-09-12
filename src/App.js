@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import './App.css';
 import Header from './Component/Header/Header';
@@ -13,11 +13,18 @@ import {
 } from "react-router-dom"; 
 import Review from './Component/Review/Review';
 import ProductDetails from './Component/ProductDetails/ProductDetails';
+import User from './Component/User/User';
 
 function App() {
+  const[familiar, setFamiliar]= useState(false);
+
+
   return (
     <div >
-      <Header></Header>
+      <h2>Is familiar: {familiar.toString()}</h2>
+      <button onClick={()=>setFamiliar(!familiar)}>Toggle Friend</button>
+      <User familiar ={familiar}></User>
+      {/* <Header></Header>
       <Router>
         <Switch>
             <Route path="/shop">
@@ -42,7 +49,7 @@ function App() {
         </Switch>
       </Router>
       
-    
+     */}
     </div>
   );
 }

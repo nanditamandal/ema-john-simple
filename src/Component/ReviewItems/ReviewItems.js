@@ -15,7 +15,7 @@ const ReviewItems = (props) => {
                  <p>${price}</p>
            
                   <button onClick={()=>{props.deleteItem(key)}} >
-                    REmove</button>
+                    Remove</button>
 
             </div>
         </div>
